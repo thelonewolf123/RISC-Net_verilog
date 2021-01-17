@@ -1,4 +1,4 @@
-module Memory(input clk,
+module DataMemory(input clk,
               input rd,
               input wn,
               input wire [15:0] address,

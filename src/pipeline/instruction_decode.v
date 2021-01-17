@@ -11,8 +11,11 @@ module InstructionDecode(input clk,
         case (instruction[7:0])
             8'h00: begin
                 
-            end 
-            default: 
+            end
+
+            default: begin
+                
+            end
         endcase
     end
 endmodule

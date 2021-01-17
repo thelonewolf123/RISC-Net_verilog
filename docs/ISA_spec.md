@@ -11,7 +11,7 @@
 - Instruction memory is 4 byte addressable.
 - Byte addressable data memory, with option to read or write two bytes at a same time.
 - Special Instruction to operate on floating point numbers.
-- Use 5 stage pipelining to improve overall instruction per cycle count.
+- Use 6 stage pipelining to improve overall instruction per cycle count.
   
 <!-- - UART and SPI communications for external device interface.
 - 2 timers and 2 counters. -->
@@ -26,7 +26,8 @@
 - Pipeline
   - instruction fetch
   - instruction decode
-  - operand fetch
+  - operand fetch 1
+  - operand fetch 2
   - execute
   - writeback
 - ALU
@@ -52,7 +53,7 @@
 - shr op1, op2
 - in op1,op2
 - out op1,op2
-- push
+- push op1
 - pop
 
 ## Registers
@@ -60,13 +61,15 @@
 - Program counter - 4'b0000
 - Primary Accumulator - 4b'0001
 - Secondary Accumulator - 4'b0010
-- General Purpose (A) - 4'b0011
-- General Purpose (B) - 4'b0100
-- General Purpose (C) - 4'b0101
-- General Purpose (D) - 4'b0110
-- General Purpose (X) - 4'b0111
-- General Purpose (Y) - 4'b1000
-- Flag register - 4'b1001
+- Stack pointer - 4'b0011
+- Base pointer - 4'b0100
+- General Purpose (A) - 4'b0101
+- General Purpose (B) - 4'b0110
+- General Purpose (C) - 4'b0111
+- General Purpose (D) - 4'b1000
+- General Purpose (X) - 4'b1001
+- General Purpose (Y) - 4'b1010
+- Flag register - 4'b1011
 
 ## OP codes
 

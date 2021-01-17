@@ -5,7 +5,7 @@ module memory_tb;
 
  // Inputs
  reg [31:0] dataIn;
- reg [31:0] Addr;
+ reg [15:0] Addr;
  reg CS;
  reg WE;
  reg RD;
@@ -15,7 +15,7 @@ module memory_tb;
  wire [31:0] dataOut;
  // Instantiate the Unit Under Test (UUT)
 
- Memory uut (
+ InstructionMemory uut (
   .write_data(dataIn), 
   .read_data(dataOut), 
   .address(Addr), 
@@ -31,62 +31,62 @@ module memory_tb;
      $dumpvars(0,uut);
 
   // Initialize Inputs
-  dataIn  = 31'h0;
-  Addr  = 31'h0;
-  CS  = 1'b0;
-  WE  = 1'b0;
-  RD  = 1'b0;
-  Clk  = 1'b0;
+  dataIn  <= 32'h0;
+  Addr  <= 16'h0;
+  CS  <= 1'b0;
+  WE  <= 1'b0;
+  RD  <= 1'b0;
+  Clk  <= 1'b0;
 
   // Wait 100 ns for global reset to finish
   #100;
  
   // Add stimulus here
 
-  dataIn  = 31'h0;
-  Addr  = 31'h0;
-  CS  = 1'b1;
-  WE  = 1'b1;
-  RD  = 1'b0;
+  dataIn  <= 32'h0;
+  Addr  <= 16'h0;
+  CS  <= 1'b1;
+  WE  <= 1'b1;
+  RD  <= 1'b0;
 
   #20;
 
-  dataIn  = 31'h0;
-  Addr  = 31'h0;
+  dataIn  <= 32'h0;
+  Addr  <= 16'h0;
   #20;
 
-  dataIn  = 31'h1;
-  Addr  = 31'h1;
+  dataIn  <= 32'h1;
+  Addr  <= 16'h1;
   #20;
 
-  dataIn  = 31'h10;
-  Addr  = 31'h2;
+  dataIn  <= 32'h10;
+  Addr  <= 16'h2;
   #20;
 
-  dataIn  = 31'h6;
-  Addr  = 31'h3;
+  dataIn  <= 32'h6;
+  Addr  <= 16'h3;
   #20;
 
-  dataIn  = 31'h12;
-  Addr  = 31'h4;
+  dataIn  <= 32'h12;
+  Addr  <= 16'h4;
   #40;
 
-  Addr  = 31'h0;
-  WE  = 1'b0;
-  RD  = 1'b1;
+  Addr  <= 16'h0;
+  WE  <= 1'b0;
+  RD  <= 1'b1;
   #20;
 
-  Addr   = 31'h1;
+  Addr   <= 16'h1;
   #20;
 
-  Addr   = 31'h2;
+  Addr   <= 16'h2;
   #20;
 
-  Addr   = 31'h3;
+  Addr   <= 16'h3;
   #20;
 
-  Addr   = 31'h4;
+  Addr   <= 16'h4;
   
  end
- always #10 Clk = ~Clk;
+ always #10 Clk <= ~Clk;
 endmodule
