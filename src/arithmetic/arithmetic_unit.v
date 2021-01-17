@@ -1,9 +1,9 @@
 module Arithmetic_unit (input wire clk,
                         input wire [2:0] operation,
-                        input wire [15:0] op1,
-                        input wire [15:0] op2);
+                        input wire [31:0] op1,
+                        input wire [31:0] op2);
     
-    reg [31:0] result;
+    reg [63:0] result;
     
     always @ (posedge clk)
     begin

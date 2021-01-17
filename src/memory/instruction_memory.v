@@ -1,7 +1,7 @@
 module Memory(input clk,
               input rd,
               input wn,
-              input wire [31:0] address,
+              input wire [15:0] address,
               input wire [31:0] write_data,
               output reg [31:0] read_data);
     

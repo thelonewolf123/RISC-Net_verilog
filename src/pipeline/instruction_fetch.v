@@ -1,10 +1,10 @@
 module Instruction_fetch(input clk,
                          input [31:0] read_memory,
-                         input [15:0] pc,
+                         input [31:0] pc,
                          output reg [31:0] instruction);
     reg [1:2] count;
-    reg [15:0] address;
-    reg [15:0] write_data;
+    reg [31:0] address;
+    reg [31:0] write_data;
     
     reg rd,wn;
     
