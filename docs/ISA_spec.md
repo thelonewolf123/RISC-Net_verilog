@@ -18,7 +18,6 @@
   
 - 4 I/O ports with 32 digital pins.
 
-
 ## Blocks
 
 - Registers
