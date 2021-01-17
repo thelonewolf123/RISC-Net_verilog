@@ -6,11 +6,28 @@ module Memory(input clk,
               input wire [15:0] write_data,
               output reg [15:0] read_data);
     
-    reg [15:0] sRAM[2047:0];
+    reg [7:0] sRAM[2047:0];
     
     always @ (posedge clk) begin
-        if (rd == 1'b1 && wn == 1'b0) read_data      = sRAM[address];
-        else if (rd == 1'b0 && wn == 1'b1) sRAM[address] = write_data;
+        if (rd == 1'b1 && wn == 1'b0) begin
+            if (mode == 1'b0) begin
+                read_data <= {sRAM[address],sRAM[address+1]};
+            end
+            else if (mode == 1'b1) begin
+                read_data <= {sRAM[address]};
+            end
+        end
+    end
+    
+    always @ (negedge clk) begin
+        if (rd == 1'b0 && wn == 1'b1) begin
+            if (mode == 1'b0) begin
+                {sRAM[address], sRAM[address+1]}= write_data;
+            end
+            else if (mode == 1'b1) begin
+                sRAM[address] <= {write_data};
+            end
+        end
     end
     
 endmodule

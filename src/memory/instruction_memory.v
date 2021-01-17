@@ -1,4 +1,4 @@
-module Memory(input clk,
+module InstructionMemory(input clk,
               input rd,
               input wn,
               input wire [15:0] address,
@@ -11,5 +11,6 @@ module Memory(input clk,
         if (rd == 1'b1 && wn == 1'b0) read_data      = sRAM[address];
         else if (rd == 1'b0 && wn == 1'b1) sRAM[address] = write_data;
     end
+    
     
 endmodule
