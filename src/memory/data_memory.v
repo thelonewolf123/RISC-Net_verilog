@@ -22,10 +22,10 @@ module Memory(input clk,
     always @ (negedge clk) begin
         if (rd == 1'b0 && wn == 1'b1) begin
             if (mode == 1'b0) begin
-                {sRAM[address], sRAM[address+1]}= write_data;
+                {sRAM[address], sRAM[address+1]} <= write_data;
             end
             else if (mode == 1'b1) begin
-                sRAM[address] <= {write_data};
+                sRAM[address] <= write_data[7:0];
             end
         end
     end

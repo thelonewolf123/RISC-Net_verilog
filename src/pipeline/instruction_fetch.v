@@ -25,7 +25,7 @@ module Instruction_fetch(input clk,
         rd <= 1'b1;
         wni <= 1'b0;
         rdi <= 1'b1;
-        reg_id = 4'b0000;
+        reg_id <= 4'b0000;
         address     <= read_data_reg;
         instruction <= read_data;
     end
