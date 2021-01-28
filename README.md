@@ -8,6 +8,5 @@
 - 5 stage pipelining
 - Floating point unit
 - Special instructions for operate on signed numbers
-- S/w and H/w interupts
-- Implement stack
+- S/w based stack implimentation
 - Write a simple assembler

@@ -11,7 +11,7 @@
 - Instruction memory is 4 byte addressable.
 - Byte addressable data memory, with option to read or write two bytes at a same time.
 - Special Instruction to operate on floating point numbers.
-- Use 6 stage pipelining to improve overall instruction per cycle count.
+- Use 5 stage pipelining to improve overall instruction per cycle count.
   
 <!-- - UART and SPI communications for external device interface.
 - 2 timers and 2 counters. -->
@@ -26,8 +26,7 @@
 - Pipeline
   - instruction fetch
   - instruction decode
-  - operand fetch 1
-  - operand fetch 2
+  - operand fetch
   - execute
   - writeback
 - ALU
@@ -53,8 +52,9 @@
 - shr op1, op2
 - in op1,op2
 - out op1,op2
-- push op1
-- pop
+
+<!-- - push op1
+- pop -->
 
 ## Registers
 
@@ -172,11 +172,11 @@
 - jg reg -> 8'h3d
 - jg \[memorry\] -> 8'h3e
 
-### Stack instructions
+<!-- ### Stack instructions
 
 - push value -> 8'h3f
 - push reg -> 8'h40
 - push \[memorry\] -> 8'h41
   
 - pop  -> 8'h42
-- pop reg -> 8'h43
+- pop reg -> 8'h43 -->

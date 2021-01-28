@@ -1,4 +1,5 @@
-module RISC_Net(input wire clk);
+module RISC_Net(input wire clk,
+                input wire reset);
     
     // Inputs
     reg [31:0] dataIn;
@@ -19,6 +20,7 @@ module RISC_Net(input wire clk);
     
     wire [31:0] instruction;
     
+    reg cs;
     wire i_rd;
     wire i_wn;
     wire [15:0] i_address;
@@ -41,6 +43,7 @@ module RISC_Net(input wire clk);
     );
     
     Register register(.clk(clk),
+    .reset(reset),
     .rd(rdi),
     .wn(wni),
     .reg_id(reg_id),
@@ -48,6 +51,7 @@ module RISC_Net(input wire clk);
     .read_data(read_data_reg));
     
     InstructionFetch instruction_fetch(.clk(clk),
+    .cs(cs),
     .read_memory(dataOut),
     .read_data_reg(read_data_reg),
     .rd(i_rd),
