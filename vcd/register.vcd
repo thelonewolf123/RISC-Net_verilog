@@ -1,0 +1,88 @@
+$date
+	Mon Feb 15 11:20:16 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ns
+$end
+$scope module register_tb $end
+$scope module UUT $end
+$var wire 1 ! clk $end
+$var wire 1 " pop_en $end
+$var wire 1 # push_en $end
+$var wire 1 $ rd $end
+$var wire 4 % reg_id [3:0] $end
+$var wire 1 & reset $end
+$var wire 1 ' stack_en $end
+$var wire 1 ( wn $end
+$var wire 16 ) write_data [15:0] $end
+$var reg 16 * read_data [15:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx *
+b1111 )
+1(
+0'
+x&
+b10 %
+0$
+x#
+x"
+0!
+$end
+#10
+1!
+#20
+0!
+#25
+0(
+1$
+1#
+0"
+1'
+#30
+b1111 *
+1!
+#40
+0!
+#50
+b10000 *
+1!
+#60
+0!
+0#
+1"
+#70
+b10001 *
+1!
+#80
+0!
+#85
+0'
+#90
+b10000 *
+1!
+#100
+0!
+#110
+1!
+#120
+0!
+#130
+1!
+#140
+0!
+#150
+1!
+#160
+0!
+#170
+1!
+#180
+0!
+#185

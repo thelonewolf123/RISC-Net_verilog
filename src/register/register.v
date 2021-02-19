@@ -2,24 +2,33 @@ module Register(input clk,
                 input reset,
                 input rd,
                 input wn,
+                input stack_en,
+                input push_en,
+                input pop_en,
+                // input carry_flag_in,
+                // input less_flag_in,
+                // input 
                 input wire [3:0] reg_id,
                 input wire [15:0] write_data,
                 output reg [15:0] read_data);
     
-    reg [15:0] register_memory[16:0];
+    reg [15:0] register_memory[15:0];
     
-    integer count;
     
     always @ (posedge clk or reset) begin
-        if (reset == 1'b1) begin
-            for (count = 0;count<16 ; count++) begin
-                register_memory[count] = 16'h0;
-            end
+        
+        if (rd == 1'b1 && wn == 1'b0) begin
+            read_data = register_memory[reg_id];
         end
-        else begin
-            if (rd == 1'b1 && wn == 1'b0) read_data      = register_memory[reg_id];
-            else if (rd == 1'b0 && wn == 1'b1) register_memory[reg_id] = write_data;
+        else if (rd == 1'b0 && wn == 1'b1)  begin
+            register_memory[reg_id] = write_data;
         end
-    end
-    
+            
+        if (stack_en == 1'b1 && push_en == 1'b1 && pop_en == 1'b0) begin
+                register_memory[2] = register_memory[2] + 1;
+        end
+        else if (stack_en == 1'b1 && pop_en == 1'b1 && push_en == 1'b0) begin
+                register_memory[2] = register_memory[2] - 1;
+        end
+    end              
 endmodule

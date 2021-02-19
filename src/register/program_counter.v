@@ -1,4 +1,4 @@
-module ProgramCounter(PCNext, PCResult, Reset, Clk,PCWrite);
+module ProgramCounter(PCNext, PCResult, Reset, Clk, PCWrite);
 
 	input       [15:0]  PCNext;
 	input               Reset, Clk,PCWrite;
@@ -8,7 +8,6 @@ module ProgramCounter(PCNext, PCResult, Reset, Clk,PCWrite);
     /* Please fill in the implementation here... */
 
 	initial begin
-	
 		PCResult <= 16'h0000;
 	end
 
