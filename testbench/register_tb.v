@@ -32,19 +32,19 @@ initial begin
     reg_id     = 2;
     write_data = 15;
     stack_en   = 0;
-    #25
+    #10
     stack_en = 1;
     pop_en   = 0;
     push_en  = 1;
     rd       = 1;
     wn       = 0;
     
-    #35
+    #10
     stack_en = 1;
     pop_en   = 1;
     push_en  = 0;
     
-    #25
+    #10
     stack_en = 0;
     rd       = 1;
     wn       = 0;

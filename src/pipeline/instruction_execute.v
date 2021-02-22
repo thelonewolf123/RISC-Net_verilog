@@ -1,4 +1,4 @@
-module OperandFtech1(input clk,
+module OperandFtech(input clk,
                      input wire [7:0] opcode,
                      input wire [15:0] op1,
                      input wire [15:0] op2);
