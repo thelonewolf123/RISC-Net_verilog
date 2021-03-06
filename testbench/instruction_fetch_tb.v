@@ -1,14 +1,15 @@
 `timescale 1ns/1ns
 
 module instruction_fetch_tb;
+
     reg clk;
-    reg cs;
     reg [15:0] pc_in;
     wire [31:0] read_memory;
     wire rd;
     wire wn;
     wire [15:0] address;
-    wire [31:0] instruction; 
+    wire [31:0] instruction;
+    wire [31:0] instruction_out;
 
     reg [31:0] write_data;
 
@@ -16,15 +17,17 @@ module instruction_fetch_tb;
     assign  rd = 1'b1;
 
     InstructionMemory instruction_memory (
-    .write_data(write_data), 
-    .read_data(read_memory), 
-    .address(address), 
-    .wn(wn), 
-    .rd(rd), 
+    .write_data(write_data),
+    .read_data(read_memory),
+    .address(address),
+    .wn(wn),
+    .rd(rd),
     .clk(clk)
     );
 
-    InstructionFetch instruction_fetch(clk, pc_in, read_memory, address, instruction);
+    InstructionDecode instruction_fetch(clk, pc_in, read_memory, address, instruction);
+
+    IF_ID_latch if_id_latch(clk, instruction, instruction_out);
 
     initial begin
 
@@ -37,26 +40,26 @@ module instruction_fetch_tb;
 
         // Wait 100 ns for global reset to finish
         #100;
-        
+
         // Add stimulus here
 
         pc_in <= 0;
-        #10
+        #20
         pc_in <= 1;
-        #10
+        #20
         pc_in <= 2;
-        #10
+        #20
         pc_in <= 3;
-        #10
+        #20
         pc_in <= 4;
-        #10
+        #20
         pc_in <= 5;
         #1000
 
         $finish;
-    
+
     end
-    
+
     always #10 clk=~clk;
 
 endmodule

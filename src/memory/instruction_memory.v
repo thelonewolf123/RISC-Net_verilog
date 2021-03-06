@@ -6,7 +6,7 @@ module InstructionMemory(input clk,
               output wire [31:0] read_data);
     
     reg [31:0] sRAM[2047:0];
-    assign read_data   = sRAM[address];
+    assign read_data   = (rd == 1'b1 && wn == 1'b0) ? sRAM[address] : 32'h0;
     initial begin
         sRAM[0] = 1;
         sRAM[1] = 2;
@@ -21,6 +21,5 @@ module InstructionMemory(input clk,
     always @ (posedge clk) begin
         if (rd == 1'b0 && wn == 1'b1) sRAM[address] <= write_data;
     end
-    
-    
+
 endmodule
