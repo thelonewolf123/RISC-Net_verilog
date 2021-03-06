@@ -28,7 +28,19 @@ module InstructionDecode(input clk,
 
     reg [1:0] mode_temp;
     reg [15:0] op1_temp;
-    reg [15:0] op2_temp;
+
+    reg rd_en_reg1_temp;
+    reg rd_en_reg2_temp;
+    reg wr_en_reg1_temp;
+    reg wr_en_reg2_temp;
+
+    reg rd_en_mem_temp;
+    reg wr_en_mem_temp;
+
+    reg [3:0] reg_id1_temp;
+    reg [3:0] reg_id2_temp;
+
+    reg [15:0] mem_addr_temp;
 
     // assign opcode = instruction[23:18];
     // assign mode = instruction[17:16];
@@ -36,39 +48,47 @@ module InstructionDecode(input clk,
     // assign op2 = instruction[11:0];
 
     assign opcode = instruction[23:18];
-    assign mode = mode_temp;
-    assign op1 = op1_temp;
-    assign op2 = op2_temp;
+    assign mode = instruction[17:16];
+
+    assign rd_en_reg1 = rd_en_reg1_temp;
+    assign rd_en_reg2 = rd_en_reg2_temp;
+    assign wr_en_reg1 = wr_en_reg1_temp;
+    assign wr_en_reg2 = wr_en_reg2_temp;
+
+    assign reg_id1 = reg_id1_temp;
+    assign reg_id2 = reg_id2_temp;
+
+    assign rd_en_mem = rd_en_mem_temp;
+    assign wr_en_mem = wr_en_mem_temp;
+
+    assign mem_addr = mem_addr_temp;
+
+    assign op1 = reg_data1;
+    assign op2 = (instruction[17:16] == 2'b00)? reg_data2 : ((instruction[17:16] == 2'b00)? mem_data : {4'b0000, instruction[11:0]});
 
     always @ (posedge clk) begin
 
-    // op1 fetch
-    rd_en_reg1 = 1'b1;
-    wr_en_reg1 = 1'b0;
-    reg_id1 = instruction[15:12]
-    op1_temp = reg_data1;
+      // op1 fetch
+      rd_en_reg1_temp = 1'b1;
+      wr_en_reg1_temp = 1'b0;
+      reg_id1_temp = instruction[15:12];
+      op1_temp = reg_data1;
 
-    case(instruction[17:16])
+      case(instruction[17:16])
 
-      2'b00: begin
-        // op2 fetch
-        rd_en_reg2 = 1'b1;
-        wr_en_reg2 = 1'b0;
-        reg_id2 = instruction[11:8];
-        op2_temp = reg_data2;
-      end
+        2'b00: begin
+          // op2 fetch
+          rd_en_reg2_temp = 1'b1;
+          wr_en_reg2_temp = 1'b0;
+          reg_id2_temp = instruction[11:8];
+        end
 
-      2'b01: begin
-        // op2 fetch
-        rd_en_mem = 1'b1;
-        wr_en_mem = 1'b0;
-        mem_addr = {4'b0000, instruction[11:0]};
-        op2_temp = mem_data;
-      end
-      2'b10: begin
-        // op2 fetch
-        op2_temp = {4'b0000, instruction[11:0]};
-      end
-    endcase
+        2'b01: begin
+          // op2 fetch
+          rd_en_mem_temp = 1'b1;
+          wr_en_mem_temp = 1'b0;
+          mem_addr_temp = {4'b0000, instruction[11:0]};
+        end
+      endcase
     end
 endmodule
