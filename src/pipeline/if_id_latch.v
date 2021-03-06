@@ -1,6 +1,6 @@
 module IF_ID_latch (input wire clk,
-                    input wire [31:0] instruction_in,
-                    output reg [31:0] instruction_out
+                    input wire [23:0] instruction_in,
+                    output reg [23:0] instruction_out
                     );
 
     reg [31:0] instruction_reg;
@@ -12,5 +12,5 @@ module IF_ID_latch (input wire clk,
     always @(negedge clk) begin
         instruction_out <= instruction_reg;
     end
-    
+
 endmodule
