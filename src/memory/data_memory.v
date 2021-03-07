@@ -18,17 +18,6 @@ module DataMemory(input clk,
 
     assign read_data = (rd == 1'b1 && wn == 1'b0) ? {sRAM[address], sRAM[address + 1]}: 16'b0;
 
-    // always @ (posedge clk) begin
-    //     if (rd == 1'b1 && wn == 1'b0) begin
-    //         if (mode == 1'b0) begin
-    //             read_data <= {sRAM[address],sRAM[address+1]};
-    //         end
-    //         else if (mode == 1'b1) begin
-    //             read_data <= {sRAM[address]};
-    //         end
-    //     end
-    // end
-
     always @ (negedge clk) begin
         if (rd == 1'b0 && wn == 1'b1) begin
             if (mode == 1'b0) begin

@@ -52,25 +52,17 @@ module instruction_fetch_tb;
 
         // Add stimulus here
 
-        instruction <= 24'b00000000011000000000100;
+        instruction <= 24'b000000_00_0110_00000000100;
         #20
-        instruction <= 24'b000100010011000000000110;
+        instruction <= 24'b000100_01_0011_000000000110;
         #20
-        instruction <= 24'b00001100011000000000100;
+        instruction <= 24'b000011_00_0110_00000000100;
         #20
-        instruction <= 24'b000100010011000000000110;
+        instruction <= 24'b000100_10_0011_000000000110;
         #20
-        instruction <= 24'b11000000011000000000100;
-        #20
-        instruction <= 24'b000110010011000000000110;
-        #20
-        // instruction <= 2;
+        // instruction <= 24'b11000000011000000000100;
         // #20
-        // instruction <= 3;
-        // #20
-        // instruction <= 4;
-        // #20
-        // instruction <= 5;
+        // instruction <= 24'b000110010011000000000110;
         #1000
 
         $finish;

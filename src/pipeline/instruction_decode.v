@@ -26,9 +26,6 @@ module InstructionDecode(input clk,
                          output wire [15:0] op2);
 
 
-    reg [1:0] mode_temp;
-    reg [15:0] op1_temp;
-
     reg rd_en_reg1_temp;
     reg rd_en_reg2_temp;
     reg wr_en_reg1_temp;
@@ -41,11 +38,6 @@ module InstructionDecode(input clk,
     reg [3:0] reg_id2_temp;
 
     reg [15:0] mem_addr_temp;
-
-    // assign opcode = instruction[23:18];
-    // assign mode = instruction[17:16];
-    // assign op1 = instruction[15:12];
-    // assign op2 = instruction[11:0];
 
     assign opcode = instruction[23:18];
     assign mode = instruction[17:16];
@@ -64,7 +56,7 @@ module InstructionDecode(input clk,
     assign mem_addr = mem_addr_temp;
 
     assign op1 = reg_data1;
-    assign op2 = (instruction[17:16] == 2'b00)? reg_data2 : ((instruction[17:16] == 2'b00)? mem_data : {4'b0000, instruction[11:0]});
+    assign op2 = (mode == 2'b00)? reg_data2 : ((mode == 2'b01)? mem_data : ((mode == 2'b10)? {4'b0000, instruction[11:0]} : 16'b0));
 
     always @ (posedge clk) begin
 
@@ -72,9 +64,8 @@ module InstructionDecode(input clk,
       rd_en_reg1_temp = 1'b1;
       wr_en_reg1_temp = 1'b0;
       reg_id1_temp = instruction[15:12];
-      op1_temp = reg_data1;
 
-      case(instruction[17:16])
+      case(mode)
 
         2'b00: begin
           // op2 fetch
