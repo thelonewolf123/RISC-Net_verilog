@@ -19,11 +19,12 @@ module InstructionDecode(input clk,
                          output wire [3:0] reg_id2,
 
                          output wire [15:0] mem_addr,
-                         output wire [5:0] opcode,
+                         output wire [5:0]  opcode,
 
-                         output wire [1:0] mode,
+                         output wire [1:0]  mode,
                          output wire [15:0] op1,
-                         output wire [15:0] op2);
+                         output wire [15:0] op2,
+                         output wire [3:0]  wb_reg);
 
 
     reg rd_en_reg1_temp;
@@ -40,7 +41,8 @@ module InstructionDecode(input clk,
     reg [15:0] mem_addr_temp;
 
     assign opcode = instruction[23:18];
-    assign mode = instruction[17:16];
+    assign mode   = instruction[17:16];
+    assign wb_reg = reg_id1_temp;
 
     assign rd_en_reg1 = rd_en_reg1_temp;
     assign rd_en_reg2 = rd_en_reg2_temp;
@@ -64,6 +66,7 @@ module InstructionDecode(input clk,
       rd_en_reg1_temp = 1'b1;
       wr_en_reg1_temp = 1'b0;
       reg_id1_temp = instruction[15:12];
+      $display("instruction %b",instruction);
 
       case(mode)
 

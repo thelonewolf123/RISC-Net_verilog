@@ -8,13 +8,13 @@ module DataMemory(input clk,
 
     reg [7:0] sRAM[2047:0];
 
-    integer i;
-
-    initial begin
-      for(i=0; i< 16; i++) begin
-        sRAM[i] = i+1;
-      end
-    end
+    // integer i;
+    //
+    // initial begin
+    //   for(i=0; i< 16; i++) begin
+    //     sRAM[i] = i+1;
+    //   end
+    // end
 
     assign read_data = (rd == 1'b1 && wn == 1'b0) ? {sRAM[address], sRAM[address + 1]}: 16'b0;
 

@@ -16,17 +16,17 @@ module Register(input wire clk,
     assign read_data1 = (rd1 == 1'b1 && wn1 == 1'b0)? register_memory[reg_id1] : 16'h0;
     assign read_data2 = (rd2 == 1'b1 && wn2 == 1'b0)? register_memory[reg_id2] : 16'h0;
 
-    integer i;
-
-    initial begin
-      for(i=0; i< 16; i++) begin
-        register_memory[i] = i+5;
-      end
-    end
+    // integer i;
+    //
+    // initial begin
+    //   for(i=0; i< 16; i++) begin
+    //     register_memory[i] = i+5;
+    //   end
+    // end
 
     always @ (posedge clk) begin
         if (rd1 == 1'b0 && wn1 == 1'b1)  begin
-            register_memory[reg_id2] = write_data1;
+            register_memory[reg_id1] = write_data1;
         end
 
         if (rd2 == 1'b0 && wn2 == 1'b1)  begin
