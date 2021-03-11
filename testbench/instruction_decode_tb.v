@@ -26,15 +26,13 @@ module instruction_fetch_tb;
     wire [1:0] mode;
     wire [15:0] op1;
     wire [15:0] op2;
-
-    assign  wn = 1'b0;
-    assign  rd = 1'b1;
+    wire [3:0]  wb_reg;
 
     DataMemory data_memory (clk, rd_mem, wr_mem, address, mode_mem, write_data_mem, mem_data);
 
     Register register(clk, reset, rd_reg1, wn_reg1, rd_reg2, wn_reg2, reg_id1, reg_id2, write_data1, write_data2, reg_data1, reg_data2);
 
-    InstructionDecode instruction_decode(clk, instruction, reg_data1, reg_data2, mem_data, rd_reg1, wn_reg1, rd_reg2, wn_reg2, rd_mem, wr_mem, reg_id1, reg_id2, address, opcode, mode, op1, op2);
+    InstructionDecode instruction_decode(clk, instruction, reg_data1, reg_data2, mem_data, rd_reg1, wn_reg1, rd_reg2, wn_reg2, rd_mem, wr_mem, reg_id1, reg_id2, address, opcode, mode, op1, op2, wb_reg);
 
     // IF_ID_latch if_id_latch(clk, instruction, instruction_out);
 
@@ -52,18 +50,14 @@ module instruction_fetch_tb;
 
         // Add stimulus here
 
-        instruction <= 24'b000000_00_0110_00000000100;
+        instruction <= 24'b000000_00_0100_000000000100;
         #20
         instruction <= 24'b000100_01_0011_000000000110;
         #20
-        instruction <= 24'b000011_00_0110_00000000100;
+        instruction <= 24'b000011_00_0110_000000001000;
         #20
         instruction <= 24'b000100_10_0011_000000000110;
-        #20
-        // instruction <= 24'b11000000011000000000100;
-        // #20
-        // instruction <= 24'b000110010011000000000110;
-        #1000
+        #100
 
         $finish;
 
