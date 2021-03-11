@@ -10,9 +10,10 @@ module WriteBack (input clk,
   output wire wr_reg3,
   output wire [3:0] reg_id,
   output wire [15:0] reg_data,
-  output wire [15:0] mem_data,
+  output [15:0] mem_addr,
+  output wire [15:0] mem_data
   );
 
-  
+
 
 endmodule // WriteBack
