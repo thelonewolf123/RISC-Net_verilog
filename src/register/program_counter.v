@@ -1,29 +1,24 @@
-module ProgramCounter(PCNext, PCResult, Reset, Clk, PCWrite);
+module ProgramCounter (
+	input wire clk,
+	input wire reset,
+	input wire pc_write,
+	input wire [15:0] pc_in,
+	output wire [15:0] pc_result
+	);
 
-	input       [15:0]  PCNext;
-	input               Reset, Clk, PCWrite;
+	reg [15:0] program_counter;
 
-	output reg  [15:0]  PCResult;
+	assign pc_result = program_counter;
 
-    /* Please fill in the implementation here... */
-
-	initial begin
-		PCResult <= 16'h0000;
+	@always @ ( negedge clk ) begin
+		if(pc_write) begin
+			program_counter <= pc_in;
+		end
 	end
 
-    always @(posedge Clk)
-    begin
-    	if (Reset == 1)
-    	begin
-    		PCResult <= 16'h0000;
-    	end
-    	else
-    	begin
-			if (PCWrite == 1) begin
-				PCResult <= PCNext;
-			end
-    	end
-		// $display("PC=%h",PCResult);
-    end
-
-endmodule
+	@always @ ( posedge clk ) begin
+		if(reset) begin
+			program_counter <= 16'h0;
+		end
+	end
+endmodule // ProgramCounter

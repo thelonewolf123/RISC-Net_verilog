@@ -1,0 +1,13 @@
+`define ADD  4'h0
+`define SUB  4'h1
+`define MUL  4'h2
+`define AND  4'h3
+`define OR   4'h4
+`define NOT  4'h5
+`define XOR  4'h6
+`define XNOR 4'h7
+`define SHR  4'h8
+`define SHL  4'h9
+`define ROR  4'ha
+`define ROL  4'hb
+`define CMP  4'hc

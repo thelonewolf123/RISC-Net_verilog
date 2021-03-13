@@ -13,9 +13,161 @@ module InstructionExecute(input clk,
 
         always @ ( posedge clk ) begin
           case (opcode)
-          5'b0: begin
-          
+          `NOP : begin
+
+
           end
+
+          `LD  : begin
+
+
+          end
+
+          `LDH : begin
+
+
+          end
+
+          `LDL : begin
+
+
+          end
+
+          `LDPC: begin
+
+
+          end
+
+          `STR : begin
+
+
+          end
+
+          `STRH: begin
+
+
+          end
+
+          `STRL: begin
+
+
+          end
+
+          `ADD : begin
+
+
+          end
+
+          `SUB : begin
+
+
+          end
+
+          `MUL : begin
+
+
+          end
+
+          `AND : begin
+
+
+          end
+
+          `OR  : begin
+
+
+          end
+
+          `NOT : begin
+
+
+          end
+
+          `XOR : begin
+
+
+          end
+
+          `XNOR: begin
+
+
+          end
+
+          `SHR : begin
+
+
+          end
+
+          `SHL : begin
+
+
+          end
+
+          `ROR : begin
+
+
+          end
+
+          `ROL : begin
+
+
+          end
+
+          `STF : begin
+
+
+          end
+
+          `RDF : begin
+
+
+          end
+
+          `CMP : begin
+
+
+          end
+
+          `JMP : begin
+
+
+          end
+
+          `JC  : begin
+
+
+          end
+
+          `JE  : begin
+
+
+          end
+
+          `JNE : begin
+
+
+          end
+
+          `JL  : begin
+
+
+          end
+
+          `JLE : begin
+
+
+          end
+
+          `JG  : begin
+
+
+          end
+
+          `JGE : begin
+
+
+          end
+
           endcase
         end
 
